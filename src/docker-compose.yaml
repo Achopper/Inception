@@ -2,7 +2,7 @@
 services:
   nginx:
     container_name: nginx
-    build: ./src/nginx
+    build: nginx
     deploy:
       restart_policy:
         max_attempts: 3
@@ -21,7 +21,7 @@ services:
 
   wordpress:
     container_name: wordpress
-    build: ./src/wp
+    build: wp
 #    image: wordpress
     volumes:
       - wp:var/www/html/wordpress
@@ -31,7 +31,7 @@ services:
             delay: 3s
             condition: on-failure
     networks:
-      - ${DOCKER_NETWORK}
+      - supa-dupa-network
     depends_on:
       - mariadb
     environment:
@@ -42,13 +42,13 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: ./src/db
+    build: db
 #     image: mysql
     restart: always
     volumes:
       - db:var/lib/mysql
     networks:
-      - ${DOCKER_NETWORK}
+      - supa-dupa-network
     environment:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
@@ -56,8 +56,8 @@ services:
       DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
 
 networks:
-  ${DOCKER_NETWORK}:
-    name:  ${DOCKER_NETWORK}
+  supa-dupa-network:
+    name: supa-dupa-network
     driver:
       bridge
 
