@@ -1,0 +1,80 @@
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./src/nginx
+    deploy:
+      restart_policy:
+        max_attempts: 3
+        delay: 3s
+        condition: on-failure
+    user: root
+#    image: nginx
+    volumes:
+      - wp:var/www/html/wordpress
+    networks:
+     - ${DOCKER_NETWORK}
+    depends_on:
+      - worpdpress
+    ports:
+      - "443:443"
+
+  wordpress:
+    container_name: wordpress
+    build: ./src/wp
+#    image: wordpress
+    volumes:
+      - wp:var/www/html/wordpress
+    deploy:
+          restart_policy:
+            max_attempts: 3
+            delay: 3s
+            condition: on-failure
+    networks:
+      - ${DOCKER_NETWORK}
+    depends_on:
+      - mariadb
+    environment:
+      WP_DB_NAME: ${WP_DB_NAME}
+      WP_DB_USER: ${WP_DB_USER}
+      WP_DB_PASS: ${WP_DB_PASS}
+      WP_DB_HOST: ${WP_DB_HOST}
+
+  mariadb:
+    container_name: mariadb
+    build: ./src/db
+#     image: mysql
+    restart: always
+    volumes:
+      - db:var/lib/mysql
+    networks:
+      - ${DOCKER_NETWORK}
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
+networks:
+  ${DOCKER_NETWORK}:
+    name:  ${DOCKER_NETWORK}
+    driver:
+      bridge
+
+volumes:
+  db:
+    name: db
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/db
+  wp:
+    name: wp
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/${USER}/data/wp
+
+#TODO mysql bind 0.0.0.0
