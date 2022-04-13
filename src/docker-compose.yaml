@@ -13,7 +13,7 @@ services:
     volumes:
       - wp:var/www/html/wordpress
     networks:
-     - ${DOCKER_NETWORK}
+     - supa-dupa-network
     depends_on:
       - worpdpress
     ports:
