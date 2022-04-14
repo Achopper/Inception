@@ -14,9 +14,9 @@ RUN           wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz 
 
 
 
-COPY        ./wp-config.php /var/www/html/wordpress/
-COPY        ./www.conf /etc/php7/php-fpm.d/
-COPY        ./start.sh /
+COPY        /wp-config.php /var/www/html/wordpress/
+COPY        /www.conf /etc/php7/php-fpm.d/
+COPY        /start.sh /
 
 EXPOSE      9000
 
