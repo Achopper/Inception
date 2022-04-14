@@ -15,7 +15,8 @@ RUN           wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz 
             #  mkdir /var/www/ /var/www/html && \
               tar -xvf /tmp/wordpress.tar.gz -C /var/www/html && \
               chown -R www:www /var/www/html/wordpress && \
-              chmod -R 775 /var/www/html/wordpress
+              chmod -R 775 /var/www/html/wordpress && \
+              chmod  775 /start.sh
 
 
 EXPOSE      9000
