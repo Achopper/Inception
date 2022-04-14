@@ -2,7 +2,7 @@
 FROM        alpine:3.14
 LABEL       maintainer = "achopper@student.21-school.ru"
 
-RUN         apk update && apk upgrade && apk add mariadb-server net-tools curl vim
+RUN         apk update && apk upgrade && apk add net-tools curl vim mariadb-server
 
 COPY        start.sh /var/www/
 RUN         chmod +x /var/www/start.sh
