@@ -1,35 +1,25 @@
-
+version: "3.5"
 services:
   nginx:
     container_name: nginx
-    build: nginx
-    deploy:
-      restart_policy:
-        max_attempts: 3
-        delay: 3s
-        condition: on-failure
+    build: ./nginx
+    restart: always
     user: root
-#    image: nginx
     volumes:
       - wp:var/www/html/wordpress
     networks:
      - supa-dupa-network
     depends_on:
-      - worpdpress
+      - wordpress
     ports:
       - "443:443"
 
   wordpress:
     container_name: wordpress
-    build: wp
-#    image: wordpress
+    build: ./wp
     volumes:
       - wp:var/www/html/wordpress
-    deploy:
-          restart_policy:
-            max_attempts: 3
-            delay: 3s
-            condition: on-failure
+    restart: always
     networks:
       - supa-dupa-network
     depends_on:
@@ -42,8 +32,7 @@ services:
 
   mariadb:
     container_name: mariadb
-    build: db
-#     image: mysql
+    build: ./db
     restart: always
     volumes:
       - db:var/lib/mysql
@@ -58,8 +47,7 @@ services:
 networks:
   supa-dupa-network:
     name: supa-dupa-network
-    driver:
-      bridge
+
 
 volumes:
   db:
@@ -68,13 +56,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/db
+      device:  home/${USER}/data/db #/Users/achopper/goinfre/data/db #/
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: /home/${USER}/data/wp
+      device:  /home/${USER}/data/wp #/Users/achopper/goinfre/data/wp #
 
 #TODO mysql bind 0.0.0.0
