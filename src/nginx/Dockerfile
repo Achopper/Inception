@@ -2,7 +2,7 @@
 FROM    alpine:3.14
 LABEL maintainer = "achopper@student.21-school.ru"
 
-RUN     apk update && apk upgrade && apk add nginx php-gd php-xml openssl vim
+RUN     apk update && apk upgrade && apk add bash nginx php-gd php-xml openssl vim
 
 EXPOSE  443
 COPY    default.conf /etc/nginx/conf.d/default.conf
