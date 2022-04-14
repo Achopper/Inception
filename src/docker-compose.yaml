@@ -33,7 +33,7 @@ services:
   mariadb:
     container_name: mariadb
     build: ./db
-    restart: always
+   # restart: always
     volumes:
       - db:/var/lib/mysql
     networks:
