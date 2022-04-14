@@ -2,7 +2,7 @@
 FROM        alpine:3.14
 LABEL       maintainer = "achopper@student.21-school.ru"
 
-RUN         apk update && apk upgrade && apk add php-fpm php-mysql php-mbstring php-gd php-mysql wget  vim
+RUN         apk update && apk upgrade && apk add php7 php7-fpm php7-session php7-json php7-mysqli php7-xml php7-curl php7-iconv php7-phar php7-redis php7-ctype wget  vim
 
 RUN         bash /etc/init.d/php7.3-fpm start && \
               wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
