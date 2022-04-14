@@ -1,4 +1,4 @@
-
+#!/usr/bin/env sh
 
 
 chmod -R 775 /var/www/html/wordpress;
