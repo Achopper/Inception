@@ -1,7 +1,6 @@
 
-LABEL       maintainer = "achopper@student.21-school.ru"
-
 FROM        alpine:3.14
+LABEL       maintainer = "achopper@student.21-school.ru"
 
 RUN         apk update && apk upgrade && apk add php-fpm php-mysql php-mbstring php-gd php-mysql wget  vim
 
