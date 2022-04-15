@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 chown -R mysql:mysql /var/lib/mysql
 
-if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
+if [ ! -d "/var/lib/mysql/wp" ]; then
 service mysql start
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS wp DEFAULT CHARACTER SET utf8;"
 mysql -u root -e "CREATE USER 'achopper'@'%' IDENTIFIED BY '123';"
