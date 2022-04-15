@@ -10,4 +10,4 @@ ENTRYPOINT  ["/var/www/start.sh"]
 
 EXPOSE  3306
 
-CMD         ["mysqld"]
+#CMD         ["mysqld"]
