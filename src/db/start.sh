@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 chown -R mysql:mysql /var/lib/mysql
-
+service mysql start
+service mysql stop
 if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
 service mysql start
 mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME DEFAULT CHARACTER SET utf8;"
