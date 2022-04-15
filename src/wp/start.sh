@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+mkdir -p /run/php
 
 chmod -R 775 /var/www/html/wordpress;
 chown -R www-data /var/www/html/wordpress;

@@ -1,5 +1,5 @@
 
-FROM       debian:buster
+FROM        debian:buster
 LABEL       maintainer = "achopper@student.21-school.ru"
 
 RUN         apt update -y && apt upgrade -y && apt install -y sudo bash curl  wget php php-fpm php-mysql php-cli nano curl net-tools  vim
