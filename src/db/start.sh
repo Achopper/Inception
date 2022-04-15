@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-sed -i "s/bind-address/\#bind-address/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
+sed -i "s/bind-address/\#bind-address/" /etc/mysql/mariadb.conf.d/50-server.cnf
 #sed -i "s/\#port/port/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
 if [ ! -d /var/lib/mysql/wordpress ]; then
   openrc-init
@@ -16,7 +16,7 @@ if [ ! -d /var/lib/mysql/wordpress ]; then
   mysql -u root -e "FLUSH PRIVILEGES"
   #cahnge root pass
   mysqladmin -u root password $DB_ROOT_PASSWORD
-  service mariadb stop
+  service mysql stop
   /usr/bin/mysqld_safe
 else
   /usr/bin/mysqld_safe
