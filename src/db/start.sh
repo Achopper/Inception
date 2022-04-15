@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-sed -i "s/bind-address/\#bind-address/" /etc/mysql/mariadb.conf.d/50-server.cnf
+#sed -i "s/bind-address/\#bind-address/" /etc/mysql/mariadb.conf.d/50-server.cnf
 #sed -i "s/\#port/port/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
 if [ ! -d /var/lib/mysql/wordpress ]; then
   openrc-init
