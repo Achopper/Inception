@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+
 chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -d "/var/lib/mysql/wp" ]; then
