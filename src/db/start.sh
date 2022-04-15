@@ -9,8 +9,10 @@ if [ ! -d /var/lib/mysql/server_db ]; then
   #mysql -u root < /tmp/create_db.sql
   #mysql server_db -u root < /tmp/server_db.sql
   mysql -u root -e "CREATE DATABASE IF NOT EXIST $DB_NAME"
-  mysql -u root -e "CREATE USER IF NOT EXIST '$DP_USER'@'%' IDENTIFIED BY '$DB_PASS' WITH GRANT OPTION"
-  mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DP_USER'@'%'"
+  mysql -u root -e "CREATE USER IF NOT EXIST '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS' WITH GRANT OPTION"
+  mysql -u root -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%'"
+  mysql -u root -e "FLUSH PRIVILEGES"
+  #cahnge root pass
   mysqladmin -u root password $DB_ROOT_PASSWORD
   service mariadb stop
   /usr/bin/mysqld_safe

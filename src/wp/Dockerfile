@@ -9,7 +9,7 @@ COPY        ./wp-config.php /var/www/html/wordpress/
 COPY        ./start.sh /
 
 
-#RUN          sh /etc/init.d/php7.3-fpm start
+
 RUN           adduser -D 'www' -g www
 RUN           wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz && \
             #  mkdir /var/www/ /var/www/html && \
