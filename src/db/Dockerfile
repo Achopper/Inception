@@ -1,5 +1,6 @@
 
-FROM        alpine:3.14
+FROM        debian:buster
+#alpine:3.14
 LABEL       maintainer = "achopper@student.21-school.ru"
 
 RUN         apk update && apk upgrade && apk add mysql mysql-client openrc
