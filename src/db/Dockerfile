@@ -10,7 +10,7 @@ COPY       ./start.sh ./create_db.sql ./
 RUN        chmod 777 ./tmp
 EXPOSE     3306
 
-ENTRYPOINT ["sh", "/start_mysql.sh"]
+#ENTRYPOINT ["sh", "/start.sh"]
 
 #FROM debian:buster
 #
