@@ -7,7 +7,12 @@ RUN	apt update && apt install vim wget net-tools mariadb-server -y && rm -rf /va
 
 COPY	./start.sh /
 COPY    ./create_db.sql /
-#COPY    ./my.cnf   /etc/mysql/my.cnf
+COPY    ./my.cnf   /etc/mysql/
+RUN		mkdir -p /var/run/mysqld/
+RUN		chmod -R 744 /var/run/mysqld/
+RUN		chown -R mysql /var/run/mysqld
+RUN		chmod -R 744 /var/lib/
+RUN		chown -R mysql /var/lib
 RUN		chmod 755 /start.sh
 
 VOLUME [ "/var/lib/mysql" ]
