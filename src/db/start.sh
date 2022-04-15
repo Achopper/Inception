@@ -18,4 +18,4 @@ service mysql stop
 fi
 #chown -R mysql /var/run/mysqld
 #exec "$@"
-mysqld_safe
+/usr/bin/mysqld_safe

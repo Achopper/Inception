@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-
+sleep 15
 mkdir -p /run/php
 
 chmod -R 775 /var/www/html/wordpress;
