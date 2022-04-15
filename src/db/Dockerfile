@@ -6,8 +6,10 @@ RUN         apk update && apk upgrade && apk add bash net-tools curl vim openrc 
 
 COPY        ./start.sh /var/www/
 RUN         chmod +x /var/www/start.sh
+EXPOSE  3306
+
 ENTRYPOINT  ["/var/www/start.sh"]
 
-EXPOSE  3306
+
 
 #CMD         ["mysqld"]
