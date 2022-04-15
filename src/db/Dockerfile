@@ -5,7 +5,7 @@ RUN        apk update && apk upgrade && apk add mysql mysql-client openrc vim
 
 #RUN        adduser -D 'Achopper' -g mysql
 COPY       ./my.cnf /etc/
-COPY       ./start_mysql.sh ./create_db.sql ./
+COPY       ./start.sh ./create_db.sql ./
 
 RUN        chmod 777 ./tmp
 EXPOSE     3306
