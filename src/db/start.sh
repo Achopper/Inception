@@ -1,11 +1,13 @@
 #!/usr/bin/env sh
-if [ ! -d /var/lib/mysql/server_db ]; then
+sed -i "s/bind-address/\#bind-address/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
+#sed -i "s/\#port/port/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
+if [ ! -d /var/lib/mysql/wordpress ]; then
   openrc-init
   openrc boot
   rc-update add mariadb
   mysql_install_db --datadir=/var/lib/mysql
   rc-service mariadb start
-  option --skip-name-resolve
+  #option --skip-name-resolve
   #mysql -u root < /tmp/create_db.sql
   #mysql server_db -u root < /tmp/server_db.sql
   mysql -u root -e "CREATE DATABASE IF NOT EXIST $DB_NAME"
@@ -19,8 +21,6 @@ if [ ! -d /var/lib/mysql/server_db ]; then
 else
   /usr/bin/mysqld_safe
 fi
-#sed -i "s/bind-address/\#bind-address/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
-#sed -i "s/\#port/port/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
 #chown -R mysqld:mysqld /var/lib/mysql
 #if [ ! -d /var/lib/mysql/wp ]; then
 #  service mysqld start
