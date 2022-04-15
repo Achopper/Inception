@@ -4,6 +4,8 @@ LABEL       maintainer = "achopper@student.21-school.ru"
 
 RUN         apk update && apk upgrade && apk add sudo bash php7 php7-fpm php7-session php7-json php7-mysqli php7-xml php7-curl php7-iconv php7-phar php7-redis php7-ctype curl wget  vim
 
+RUN         sleep 15
+
 COPY        ./www.conf /etc/php7/php-fpm.d/
 COPY        ./wp-config.php /var/www/html/wordpress/
 COPY        ./start.sh /
