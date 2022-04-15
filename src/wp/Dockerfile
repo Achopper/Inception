@@ -2,11 +2,11 @@
 FROM        debian:buster
 LABEL       maintainer = "achopper@student.21-school.ru"
 
-RUN         apt update -y && apt upgrade -y && apt install -y sudo bash curl  wget php php-fpm php-mysql php-cli nano curl net-tools  vim
+RUN         apt update -y && apt upgrade -y && apt install -y sudo bash curl wget php7.3 php-fpm php-mysql php-cli nano curl net-tools  vim
 
 RUN         sleep 15
 
-COPY        ./www.conf /etc/php7/php-fpm.d/
+COPY        ./www.conf /etc/php/7.3/fpm/pool.d/www.conf
 COPY        ./wp-config.php /var/www/html/wordpress/
 COPY        ./start.sh /
 
