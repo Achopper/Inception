@@ -3,7 +3,7 @@ FROM        debian:buster
 #alpine:3.14
 LABEL       maintainer = "achopper@student.21-school.ru"
 
-RUN         apk update && apk upgrade && apk add mysql mysql-client openrc
+RUN         apt update && apt upgrade && apt install mysql mysql-client openrc -y
 # mariadb-common mariadb-client
 #RUN         sed -i "s/bind-address/\#bind-address/" /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY        ./start.sh /var/www/
