@@ -1,18 +1,18 @@
 version: "3.5"
 services:
-  nginx:
-    container_name: nginx
-    build: ./nginx
-    restart: always
-    user: root
-    volumes:
-      - wp:/var/www/html/wordpress
-    networks:
-     - supa-dupa-network
-    depends_on:
-      - wordpress
-    ports:
-      - "443:443"
+#  nginx:
+#    container_name: nginx
+#    build: ./nginx
+#    restart: always
+#    user: root
+#    volumes:
+#      - wp:/var/www/html/wordpress
+#    networks:
+#     - supa-dupa-network
+#    depends_on:
+#      - wordpress
+#    ports:
+#      - "443:443"
 
   wordpress:
     container_name: wordpress
@@ -24,11 +24,13 @@ services:
       - supa-dupa-network
     depends_on:
       - mariadb
-    environment:
-      WP_DB_NAME: ${WP_DB_NAME}
-      WP_DB_USER: ${WP_DB_USER}
-      WP_DB_PASS: ${WP_DB_PASS}
-      WP_DB_HOST: ${WP_DB_HOST}
+    env_file:
+          -../.env
+#    environment:
+#      WP_DB_NAME: ${WP_DB_NAME}
+#      WP_DB_USER: ${WP_DB_USER}
+#      WP_DB_PASS: ${WP_DB_PASS}
+#      WP_DB_HOST: ${WP_DB_HOST}
 
   mariadb:
     container_name: mariadb
@@ -38,11 +40,13 @@ services:
       - db:/var/lib/mysql
     networks:
       - supa-dupa-network
-    environment:
-      DB_NAME: ${DB_NAME}
-      DB_USER: ${DB_USER}
-      DB_PASS: ${DB_PASS}
-      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    env_file:
+      -../.env
+#    environment:
+#      DB_NAME: ${DB_NAME}
+#      DB_USER: ${DB_USER}
+#      DB_PASS: ${DB_PASS}
+#      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
 
 networks:
   supa-dupa-network:
