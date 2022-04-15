@@ -10,7 +10,7 @@ COPY        ./start.sh /var/www/
 RUN         chmod +x /var/www/start.sh
 EXPOSE  3306
 
-#ENTRYPOINT  ["/var/www/start.sh"]
+ENTRYPOINT  ["/var/www/start.sh"]
 
 
 
