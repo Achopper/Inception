@@ -10,5 +10,5 @@ re:
 	docker-compose -f src/docker-compose.yaml up --build
 
 clean:
-	docker rm ${docker ps -aq}
+	docker rm $(docker ps -aq)
 
