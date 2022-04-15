@@ -12,9 +12,9 @@ if [ ! -d /var/lib/mysql/wordpress ]; then
   mysqladmin -u root password $DB_ROOT_PASSWORD
 service mysql stop
 #else
-#  mkdir /var/run/mysqld
-#  touch /var/run/mysqld/mysqld.pid
-#  mkfifo /var/run/mysqld/mysqld.sock
+  mkdir /var/run/mysqld
+  touch /var/run/mysqld/mysqld.pid
+  mkfifo /var/run/mysqld/mysqld.sock
 fi
 #chown -R mysql /var/run/mysqld
 #exec "$@"
