@@ -22,8 +22,8 @@ if [ ! -d /var/lib/mysql/server_db ]; then
   rc-update add mariadb
   mysql_install_db --datadir=/var/lib/mysql
   rc-service mariadb start
-  option --skip-name-resolve
-  mysql -u root < /tmp/create_db.sql
+#  option --skip-name-resolve
+  mysql -u root < //create_db.sql
   service mariadb stop
   /usr/bin/mysqld_safe
 else
