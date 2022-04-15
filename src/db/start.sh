@@ -3,7 +3,7 @@
 #sed -i "s/\#port/port/" "/etc/mysql/mariadb.conf.d/50-server.cnf"
 
 chown -R mysql:mysql /var/lib/mysql
-if [ ! -d /var/lib/mysql/wordpress ]; then
+if [ ! -d "/var/lib/mysql/wordpress" ]; then
   service mysql start
   mysql -u root -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
   mysql -u root -e "CREATE USER IF NOT EXISTS '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';"
