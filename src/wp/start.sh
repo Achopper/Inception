@@ -2,8 +2,8 @@
 
 
 chmod -R 775 /var/www/html/wordpress;
-chown -R www /var/www/html/wordpress;
-chgrp -R www /var/www/html/wordpress;
+chown -R www-data /var/www/html/wordpress;
+chgrp -R www-data /var/www/html/wordpress;
 
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar;
