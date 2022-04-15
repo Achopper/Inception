@@ -2,7 +2,7 @@
 
 FROM debian:buster
 
-RUN	apt update && apt install vim mariadb-server -y && rm -rf /var/lib/apt/lists/*; \
+RUN	apt update && apt install vim wget net-tools mariadb-server -y && rm -rf /var/lib/apt/lists/*; \
     sed -i 's/^bind-address/#&/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 COPY	./start.sh /
