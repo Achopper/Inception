@@ -12,4 +12,4 @@ VOLUME [ "/var/lib/mysql" ]
 
 EXPOSE	3306
 
-ENTRYPOINT	["bash", "/mariadb.sh"]
+ENTRYPOINT	["bash", "/start.sh"]
