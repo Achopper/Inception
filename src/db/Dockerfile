@@ -1,17 +1,15 @@
 
-FROM        debian:buster
-#alpine:3.14
-LABEL       maintainer = "achopper@student.21-school.ru"
 
-RUN         apt update -y && apt upgrade -y && apt install -y mariadb-server
-# mariadb-common mariadb-client
-RUN         sed -i "s/bind-address/\#bind-address/" /etc/mysql/mariadb.conf.d/50-server.cnf
-COPY        ./start.sh /var/www/
-RUN         chmod +x /var/www/start.sh
-EXPOSE  3306
+FROM debian:buster
 
-ENTRYPOINT  ["/var/www/start.sh"]
+RUN	apt update && apt install mariadb-server -y && rm -rf /var/lib/apt/lists/*; \
+    sed -i 's/^bind-address/#&/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
+COPY	mariadb.sh /
+RUN		chmod 755 /mariadb.sh
 
+VOLUME [ "/var/lib/mysql" ]
 
-#CMD         ["mysqld"]
+EXPOSE	3306
+
+ENTRYPOINT	["bash", "/mariadb.sh"]
