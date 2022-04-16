@@ -1,16 +1,4 @@
 
-#FROM       alpine:3.12
-#
-#RUN        apk update && apk upgrade && apk add mysql mysql-client openrc vim
-#
-##RUN        adduser -D 'Achopper' -g mysql
-#COPY       ./my.cnf /etc/
-#COPY       ./start.sh ./create_db.sql ./
-#
-#RUN        chmod 777 ./tmp
-#EXPOSE     3306
-
-#ENTRYPOINT ["sh", "/start.sh"]
 
 FROM debian:buster
 

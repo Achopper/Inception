@@ -11,6 +11,6 @@ COPY    ./nginx_selfsigned.key /etc/ssl/private/
 
 RUN     mkdir -p /run/nginx
 
-EXPOSE  80 443
+
 
 CMD     nginx -g 'daemon off;'

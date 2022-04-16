@@ -40,7 +40,7 @@ define('DB_COLLATE', '');
 define('WP_REDIS_HOST', 'redis');
 define('WP_REDIS_PORT', '6379');
 define('WP_CACHE_KEY_SALT', 'achopper.42.serv');
-define('WP_CAHCHE', true)
+define('WP_CAHCHE', true);
 
 /**#@+
  * Authentication Unique Keys and Salts.
