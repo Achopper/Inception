@@ -1,31 +1,31 @@
-##!/usr/bin/env sh
-#
-#chown -R mysql:mysql /var/lib/mysql
-#
-#if [ ! -d "/var/lib/mysql/wp" ]; then
-#service mysql start
-#mysql -u root -e "CREATE DATABASE IF NOT EXISTS wp DEFAULT CHARACTER SET utf8;"
-#mysql -u root -e "CREATE USER 'achopper'@'%' IDENTIFIED BY '123';"
-#mysql -u root -e "GRANT ALL PRIVILEGES ON wp.* TO achopper@'%'"
-#mysql -u root -e "FLUSH PRIVILEGES;"
-#mysqladmin -u root password 123
-#service mysql stop
-#fi
-#
-#/usr/bin/mysqld_safe
-
 #!/usr/bin/env sh
 
-if [ ! -d /var/lib/mysql/server_db ]; then
-  openrc-init
-  openrc boot
-  rc-update add mariadb
-  mysql_install_db --datadir=/var/lib/mysql
-  rc-service mariadb start
-#  option --skip-name-resolve
-  mysql -u root < //create_db.sql
-  service mariadb stop
-  /usr/bin/mysqld_safe
-else
-  /usr/bin/mysqld_safe
+chown -R mysql:mysql /var/lib/mysql
+
+if [ ! -d "/var/lib/mysql/wp" ]; then
+service mysql start
+mysql -u root -e "CREATE DATABASE IF NOT EXISTS wp DEFAULT CHARACTER SET utf8;"
+mysql -u root -e "CREATE USER 'achopper'@'%' IDENTIFIED BY '123';"
+mysql -u root -e "GRANT ALL PRIVILEGES ON wp.* TO achopper@'%'"
+mysql -u root -e "FLUSH PRIVILEGES;"
+mysqladmin -u root password 123
+service mysql stop
 fi
+
+/usr/bin/mysqld_safe
+
+##!/usr/bin/env sh
+#
+#if [ ! -d /var/lib/mysql/server_db ]; then
+#  openrc-init
+#  openrc boot
+#  rc-update add mariadb
+#  mysql_install_db --datadir=/var/lib/mysql
+#  rc-service mariadb start
+##  option --skip-name-resolve
+#  mysql -u root < //create_db.sql
+#  service mariadb stop
+#  /usr/bin/mysqld_safe
+#else
+#  /usr/bin/mysqld_safe
+#fi
