@@ -1,16 +1,20 @@
 
-FROM    alpine:3.14
-LABEL maintainer = "achopper@student.21-school.ru"
+   
+FROM debian:buster
 
-RUN     apk update && apk upgrade && apk add bash nginx php-gd php-xml openssl vim
+RUN apt-get update -y && apt-get -y install nginx vim openssl
 
-EXPOSE  443
-COPY    default.conf /etc/nginx/conf.d/default.conf
-COPY    ./nginx_selfsigned.crt ./dhparam.pem /etc/ssl/certs/
-COPY    ./nginx_selfsigned.key /etc/ssl/private/
+COPY nginx.conf /etc/nginx/sites-available/default
 
-RUN     mkdir -p /run/nginx
+RUN openssl req -newkey rsa:2048 -nodes -x509 -days 365 \
+	-subj "/C=RU/ST=Moscow/L=Moscow/O=achopper/CN=achopper.42.fr" \
+	-keyout etc/ssl/key.key  \
+	-out etc/ssl/cert.cert && \
+	chmod 777 /etc/ssl/*
+
+RUN	chown -R www-data /var/www/html
 
 
+EXPOSE 443
 
-CMD     nginx -g 'daemon off;'
+CMD	["nginx","-g","daemon off;"]

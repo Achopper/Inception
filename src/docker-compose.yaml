@@ -18,7 +18,7 @@ services:
     container_name: wordpress
     build: ./wp
     volumes:
-      - wp:/var/www/html/wordpress/
+      - wp:/var/www/html/wordpress
     restart: always
     networks:
       - supa-dupa-network
@@ -26,27 +26,19 @@ services:
       - mariadb
     env_file:
           - ../.env
-#    environment:
-#      WP_DB_NAME: ${WP_DB_NAME}
-#      WP_DB_USER: ${WP_DB_USER}
-#      WP_DB_PASS: ${WP_DB_PASS}
-#      WP_DB_HOST: ${WP_DB_HOST}
+
 
   mariadb:
     container_name: mariadb
     build: ./db
-   # restart: always
+    restart: always
     volumes:
-      - db:/var/lib/mysql/
+      - db:/var/lib/mysql
     networks:
       - supa-dupa-network
     env_file:
       - ../.env
-#    environment:
-#      DB_NAME: ${DB_NAME}
-#      DB_USER: ${DB_USER}
-#      DB_PASS: ${DB_PASS}
-#      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+
 
 networks:
   supa-dupa-network:
@@ -60,13 +52,13 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device:  home/${USER}/data/db #/Users/achopper/goinfre/data/db #/
+      device:  home/${USER}/data/db
   wp:
     name: wp
     driver: local
     driver_opts:
       type: none
       o: bind
-      device:  /home/${USER}/data/wp #/Users/achopper/goinfre/data/wp #
+      device:  /home/${USER}/data/wp
 
 #TODO mysql bind 0.0.0.0
